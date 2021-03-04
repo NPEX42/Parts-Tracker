@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="run">
+    <output-path>$PROJECT_DIR$/out/artifacts/run</output-path>
+    <root id="root">
+      <element id="file-copy" path="$PROJECT_DIR$/run" />
+    </root>
+  </artifact>
+</component>
