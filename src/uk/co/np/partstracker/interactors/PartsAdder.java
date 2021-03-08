@@ -29,7 +29,7 @@ public class PartsAdder implements TableInteractor {
         String partNum = values[2];
         int count = Integer.parseInt(values[3]);
         PartInfo info = new PartInfo(count, partNum, name);
-        System.out.println("Adding Part '"+PartInfo.SerializeToCSV(info)+"'...");
+        System.out.println("Adding Part '" + PartInfo.SerializeToCSV(info) + "'...");
         table.put(partNum, info);
     }
 }

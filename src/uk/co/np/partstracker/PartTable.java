@@ -36,14 +36,16 @@
 
 package uk.co.np.partstracker;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public abstract class PartTable implements Iterable<PartInfo> {
 
-    private Map<String, PartInfo> table = new HashMap<>();
+    private final Map<String, PartInfo> table = new HashMap<>();
 
     public PartInfo get(Object key) {
         return table.get(key);
@@ -68,16 +70,15 @@ public abstract class PartTable implements Iterable<PartInfo> {
 
     public abstract void LoadTable(String path);
 
-    public void SaveTable(String path) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-            for(PartInfo part : this) {
-                String info = PartInfo.SerializeToCSV(part);
-                writer.write(info+System.lineSeparator());
-            }
-            writer.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    public abstract void SaveTable(String path);
+
+    public PartInfo GetByName(String name) throws PartNotFoundException {
+        for(PartInfo part : this)  {
+            if(name.equals(part.name)) return part;
         }
+        throw new PartNotFoundException();
     }
+
+    public static class PartNotFoundException extends RuntimeException {}
+
 }

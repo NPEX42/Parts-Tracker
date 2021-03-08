@@ -21,5 +21,5 @@ package uk.co.np.partstracker.interactors;
 import uk.co.np.partstracker.PartTable;
 
 public interface TableInteractor {
-    public void InteractWithTable(PartTable table, String... args);
+    void InteractWithTable(PartTable table, String... args);
 }

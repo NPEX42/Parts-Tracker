@@ -19,7 +19,6 @@
 package uk.co.np.partstracker;
 
 import uk.co.np.partstracker.interactors.*;
-import uk.co.np.partstracker.swing.MainWindow;
 
 import java.util.Locale;
 

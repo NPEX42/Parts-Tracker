@@ -20,7 +20,7 @@ package uk.co.np.partstracker.interactors;
 
 import uk.co.np.partstracker.PartTable;
 
-public class TableSaver implements TableInteractor{
+public class TableSaver implements TableInteractor {
     @Override
     public void InteractWithTable(PartTable table, String... args) {
         table.SaveTable(args[0]);

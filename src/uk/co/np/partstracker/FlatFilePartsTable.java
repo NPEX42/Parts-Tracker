@@ -26,21 +26,22 @@ public class FlatFilePartsTable extends PartTable {
     public void SaveTable(String path) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-            for(PartInfo part : this) {
+            for (PartInfo part : this) {
                 String info = PartInfo.SerializeToCSV(part);
-                writer.write(info+System.lineSeparator());
+                writer.write(info + System.lineSeparator());
             }
             writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
     @Override
     public void LoadTable(String path) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 try {
                     PartInfo part = PartInfo.DeserializeFromCSV(line);
                     put(part.partNumber, part);

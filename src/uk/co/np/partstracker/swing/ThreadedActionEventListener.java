@@ -16,15 +16,19 @@
  *                              0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 
-package uk.co.np.partstracker.interactors;
+package uk.co.np.partstracker.swing;
 
-import uk.co.np.partstracker.PartInfo;
-import uk.co.np.partstracker.PartTable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CountSetter implements TableInteractor {
-    @Override
-    public void InteractWithTable(PartTable table, String... args) {
-        PartInfo part = table.get(args[1]);
-        part.count = Integer.parseInt(args[2]);
+public class ThreadedActionEventListener {
+    private final ActionListener listener;
+    public ThreadedActionEventListener(ActionListener listener) {
+        this.listener = listener;
+    }
+
+    public ActionListener GetListener() {return this::actionPerformed;}
+    public void actionPerformed(ActionEvent e) {
+        new Thread(() -> {listener.actionPerformed(e);}).start();
     }
 }

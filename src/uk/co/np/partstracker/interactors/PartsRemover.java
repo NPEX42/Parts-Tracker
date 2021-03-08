@@ -20,7 +20,7 @@ package uk.co.np.partstracker.interactors;
 
 import uk.co.np.partstracker.PartTable;
 
-public class PartsRemover implements TableInteractor{
+public class PartsRemover implements TableInteractor {
     @Override
     public void InteractWithTable(PartTable table, String... args) {
         String[] values = args[0].split(":");

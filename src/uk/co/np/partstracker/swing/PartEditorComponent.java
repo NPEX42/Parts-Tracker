@@ -16,15 +16,38 @@
  *                              0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 
-package uk.co.np.partstracker.interactors;
+package uk.co.np.partstracker.swing;
 
 import uk.co.np.partstracker.PartInfo;
-import uk.co.np.partstracker.PartTable;
 
-public class CountSetter implements TableInteractor {
-    @Override
-    public void InteractWithTable(PartTable table, String... args) {
-        PartInfo part = table.get(args[1]);
-        part.count = Integer.parseInt(args[2]);
+import javax.swing.*;
+
+public class PartEditorComponent extends JPanel {
+    JTextField partNameField, partNumberField;
+    JSpinner partCountSpinner;
+
+    PartInfo currentPart;
+
+    PartEditorComponent() {
+        partNameField = new JTextField();
+        partNumberField = new JTextField();
+        partCountSpinner = new JSpinner(new SpinnerNumberModel(1,0,99,1));
+
+
+
+        SetupUI();
     }
+
+    private void SetupUI() {
+    }
+
+    public void SetActivePart(PartInfo part) {
+        currentPart = part;
+
+        partCountSpinner.setValue(part.count);
+        partNameField.setText(part.name);
+        partNumberField.setText(part.partNumber);
+    }
+
+
 }

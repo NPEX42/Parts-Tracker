@@ -1,23 +1,23 @@
 package uk.co.np.partstracker;
 
 public class PartInfo {
+    public int count;
+    public String partNumber;
+    public String name;
     public PartInfo() {
     }
-
     public PartInfo(int count, String partNumber, String name) {
         this.count = count;
         this.partNumber = partNumber;
         this.name = name;
     }
 
-    public int count;
-    public String partNumber;
-    public String name;
-
     public static PartInfo DeserializeFromCSV(String info) throws RuntimeException {
         //Format: Name,PartNum,count
         String[] values = info.split(",");
-        if(values.length < 3) {throw new RuntimeException("Incorrect Argument Length");}
+        if (values.length < 3) {
+            throw new RuntimeException("Incorrect Argument Length");
+        }
         String name = values[0];
         String partNum = values[1];
         int count = Integer.parseInt(values[2]);

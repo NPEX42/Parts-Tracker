@@ -42,7 +42,6 @@ import uk.co.np.partstracker.PartTable;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -54,7 +53,22 @@ public class MainWindow {
     private PartTable partTable;
     private PartInfo activePart;
     private File activeFile;
-    private JFrame frame;
+    private final JFrame frame;
+
+    public MainWindow(JFrame _frame) {
+        this.frame = _frame;
+        $$$setupUI$$$();
+        partsList = new JList<>();
+        UpdatePartsList();
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Parts Tracker V0.2.0a");
+        frame.setContentPane(new MainWindow(frame).pnlMain);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1080, 720);
+        frame.setVisible(true);
+    }
 
     private void createUIComponents() {
         pnlMain = new JPanel();
@@ -83,26 +97,11 @@ public class MainWindow {
         saveAsMenu.addActionListener(this::OnSaveAs);
         exitMenu.addActionListener((event) -> {
             frame.dispose();
-            OnSave(event);
+            if (activeFile != null) OnSave(event);
         });
         loadMenu.addActionListener(this::OnLoad);
 
         partsList.addListSelectionListener(this::onListItemSelected);
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Parts Tracker V0.2.0a");
-        frame.setContentPane(new MainWindow(frame).pnlMain);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1080, 720);
-        frame.setVisible(true);
-    }
-
-    public MainWindow(JFrame _frame) {
-        this.frame = _frame;
-        $$$setupUI$$$();
-        partsList = new JList<>();
-        UpdatePartsList();
     }
 
     public void UpdatePartsList() {
